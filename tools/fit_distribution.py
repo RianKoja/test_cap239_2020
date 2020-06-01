@@ -1,7 +1,14 @@
+########################################################################################################################
+# Fit distributions do data and plot a chart
+#
+# Written by Rian Koja to publish in a GitHub repository with specified licence.
+########################################################################################################################
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import genextreme, norm, lognorm
 import seaborn as sns
+
 
 # Example usage:
 def plot_ks_gev_gauss(data_sample, alg_name):

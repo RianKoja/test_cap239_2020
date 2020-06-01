@@ -1,6 +1,5 @@
 ########################################################################################################################
-# Acquire data
-#
+# Acquire data from Our World in Data repository (local or remote)
 #
 # Written by Rian Koja to publish in a GitHub repository with specified licence.
 ########################################################################################################################
@@ -8,10 +7,6 @@
 # Standard imports:
 import pandas as pd
 import os
-
-
-def date_window(df, data_init, date_end):
-    pass
 
 
 # Use this function to yield the dataframe to be analyzed.

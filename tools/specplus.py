@@ -51,7 +51,7 @@ def psd(data, init=0, final=None):
     logyerr = yerr / ydata
 
     # Compute line fit:
-    pinit = [1.0, -1.0]
+    pinit = np.asarray([[1.0, -1.0]], dtype=np.float32)
     out = optimize.leastsq(errfunc, pinit, args=(logx, logy, logyerr), full_output=True)
     pfinal = out[0]
     index = pfinal[1]
@@ -259,9 +259,9 @@ def main(data):
 
     # Draw and save figure (avoid showing to prevent blocking)
     plt.suptitle(title_main, fontsize=size_font_main)
-    img_filename = 'ANALYSIS_PSD_DFA_2.png'
     fig.set_size_inches(10, 5)
-    plt.savefig(img_filename, dpi=300, bbox_inches='tight', pad_inches=0.1)
+    # img_filename = 'ANALYSIS_PSD_DFA_2.png'
+    # plt.savefig(img_filename, dpi=300, bbox_inches='tight', pad_inches=0.1)
     plt.draw()
 
     return alfa, beta_theoretical
