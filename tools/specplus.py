@@ -22,13 +22,15 @@ import math
 # Computes PSD of a time series
 # Optionally receives an interval for the linear regression step
 # ---------------------------------------------------------------------
-def psd(data, init=0, final=None):
+def psd(data, init=None, final=None):
     n = len(data)
     time = np.arange(n)
 
     # If "final" is not given, use length of data
     if final is None:
-        final = n
+        final = int(0.99*n) - 1
+    if init is None:
+        init = int(0.01*n) + 1
 
     # Define sampling frequency:
     dt = (time[-1] - time[0] / (n - 1))
@@ -51,7 +53,7 @@ def psd(data, init=0, final=None):
     logyerr = yerr / ydata
 
     # Compute line fit:
-    pinit = np.asarray([[1.0, -1.0]], dtype=np.float32)
+    pinit = np.array([1.0, -1.0])
     out = optimize.leastsq(errfunc, pinit, args=(logx, logy, logyerr), full_output=True)
     pfinal = out[0]
     index = pfinal[1]
@@ -223,7 +225,7 @@ def main(data):
     fig_handle.plot(xdata, powerlaw(xdata, amp, index), 'r-', linewidth=1.5, label='$%.4f$' % beta)
     fig_handle.set_xlabel(texto_psdx, fontsize=size_font_axis_x)
     fig_handle.set_ylabel(texto_psdy, fontsize=size_font_axis_y)
-    fig_handle.set_title(texto_titulo_psd + r'%.4f (Theoretical $\beta$ = 2$\alpha$ +1 = %.4f)' % (beta,
+    fig_handle.set_title(texto_titulo_psd + r'%.4f (Theoretical $\beta$ = 2$\alpha$ -1 = %.4f)' % (beta,
                                                                                                    beta_theoretical),
                          loc='center', fontsize=size_font_title)
     fig_handle.set_yscale('log')
