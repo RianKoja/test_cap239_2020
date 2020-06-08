@@ -40,7 +40,7 @@ df['Parameter'] = [r'$\alpha$', r'$\beta$', r'$\Delta\alpha$', r'$\alpha_0$', r'
 df['Value'] = [alpha, beta_theoretical, mfdfa_dict['delta_alpha'], mfdfa_dict['alpha_zero'], mfdfa_dict['a_alpha']]
 print_table.render_mpl_table(df, header_columns=0, col_width=3.0)
 
-# Fazer a parte relacionada ao mode IMC-SF, para dois conjuntos diferentes de p,
+# Fazer a parte relacionada ao modelo IMC-SF, para dois conjuntos diferentes de p,
 # mostrando que a data final de propagação é livre
 imc_sf.main(p=[0.5, 0.45, 0.05], date_end='2020-06-18')
 imc_sf.main(p=[0.7, 0.25, 0.05])
