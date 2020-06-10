@@ -44,6 +44,9 @@ print_table.render_mpl_table(df, header_columns=0, col_width=3.0)
 # mostrando que a data final de propagação é livre
 imc_sf.main(p=[0.5, 0.45, 0.05], date_end='2020-06-18')
 imc_sf.main(p=[0.7, 0.25, 0.05])
+# Use a custom p value just to get a cute graph:
+imc_sf.main(p=[0.675, 0.275, 0.05])
+
 
 plt.show()
 print("Finished", __file__)

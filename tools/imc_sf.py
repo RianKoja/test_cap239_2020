@@ -1,5 +1,5 @@
 ########################################################################################################################
-# IMC_SF model for Covid-19 prediction
+# IMC_SF model for Covid-19 prediction. The Master equation is a method implemented in the RefData class.
 #
 # Written by Rian Koja to publish in a GitHub repository with specified license.
 ########################################################################################################################
@@ -126,10 +126,10 @@ class RefData:
             delta_g = (g0 - g) + q_g0
 
         # Equation 1:
-        n_s_min = g * (2 * n1 + 4 * n2 + 5 * n3) / 4
+        n_s_min = g * (1 * n1 + 3 * n2 + 5 * n3) / 2
 
         # Equation 2:
-        n_s_max = g * (4 * n1 + 7 * n2 + 10 * n3) / 4
+        n_s_max = g * (2 * n1 + 4 * n2 + 6 * n3) / 2
 
         # Equation 8: Use a min to prevent singularity:
         delta_nk = min([(n_nb_7ra - n_kt) / n_kt, n_kt])

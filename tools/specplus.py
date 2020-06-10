@@ -28,9 +28,9 @@ def psd(data, init=None, final=None):
 
     # If "final" is not given, use length of data
     if final is None:
-        final = int(0.99*n) - 1
+        final = n - 1
     if init is None:
-        init = int(0.01*n) + 1
+        init = 1
 
     # Define sampling frequency:
     dt = (time[-1] - time[0] / (n - 1))
