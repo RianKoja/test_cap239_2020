@@ -23,7 +23,6 @@ jobs:
           pip install black || true
       - name: Run all python files and see if they execute successfully
         run: |
-          cd ./src 
           python Entry.py
           echo "Here is a pwd:"
           pwd
