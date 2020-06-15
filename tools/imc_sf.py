@@ -126,10 +126,10 @@ class RefData:
             delta_g = (g0 - g) + q_g0
 
         # Equation 1:
-        n_s_min = g * (1 * n1 + 3 * n2 + 5 * n3) / 2
+        n_s_min = g * (1 * n1 + 3 * n2 + 5 * n3) / 1
 
         # Equation 2:
-        n_s_max = g * (2 * n1 + 4 * n2 + 6 * n3) / 2
+        n_s_max = g * (2 * n1 + 4 * n2 + 6 * n3) / 1
 
         # Equation 8: Use a min to prevent singularity:
         delta_nk = min([(n_nb_7ra - n_kt) / n_kt, n_kt])
@@ -140,7 +140,7 @@ class RefData:
         return g, s, n_s_min, n_s_max
 
 
-def main(date_end='2020-06-13', p=None):
+def main(date_end='2020-06-13', p=None, doc=None):
     if p is None:
         p = [0.5, 0.45, 0.05]
     # Get data:
@@ -173,6 +173,8 @@ def main(date_end='2020-06-13', p=None):
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.tight_layout()
     plt.draw()
+    if doc is not None:
+        doc.add_fig()
 
     # Plot g(t) and s(t) curves:
     ax_gs = data_test.df.plot(x='date', y=['g', 's'], label=[r'$g(t)$', r'$s(t)$'], color=['r', 'g'])
@@ -184,6 +186,8 @@ def main(date_end='2020-06-13', p=None):
     plt.title(r'$g(t)$, $s(t)$ and 7 day moving averages. p = ' + str(p))
     plt.legend()
     plt.draw()
+    if doc is not None:
+        doc.add_fig()
 
 
 # Sample execution:
