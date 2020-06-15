@@ -1,0 +1,38 @@
+name: CI (pip)
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        python-version: [3.7]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          echo "current dir is $(pwd)"
+          pip install -r src/requirements.txt
+          # install black if available (Python 3.6 and above)
+          pip install black || true
+      - name: Run all python files and see if they execute successfully
+        run: |
+          cd ./src 
+          python Entry.py
+          echo "Here is a pwd:"
+          pwd
+          echo "Here is a ls:"
+          ls
+      - name: Upload reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: /home/runner/work/test_cap239_2020/test_cap239_2020/src/mount/Test_Rian_v0.docx
+          
+
